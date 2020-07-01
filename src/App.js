@@ -7,17 +7,21 @@ import {fetchData} from './Api/index';
 
 
 export default class App extends Component {
+    state={
+        data:{}
+    }
+
     async componentDidMount() {
-        const data=await fetchData();
-        console.log(data);
+        const fetchData=await fetchData();
+        this.setState({data:fetchData})
     }
     
     render() {
         return (
             <div className={styles.container}>
                 <h1>App</h1>
+                <Cards data={this.state.data}/>
                 <Chart />
-                <Cards />
                 <CountryPicker />
             </div>
         )
